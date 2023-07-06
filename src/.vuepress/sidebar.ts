@@ -29,5 +29,13 @@ export default sidebar({
         'html5'
       ],
     },
+    {
+      text: 'http',
+      prefix: "http/",
+      collapsible: true,
+      children: [
+        'httpVersion'
+      ]
+    }
   ]
 });
