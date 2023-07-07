@@ -1,1 +1,0 @@
-import{_ as t}from"./plugin-vue_export-helper-c27b6911.js";import{o as s,c as o,b as e}from"./app-64400f6d.js";const c={},n=e("p",null,"这是积累的首页 css html js ts 网络协议 浏览器 手写代码 构建工具",-1),_=e("p",null,"vue2 vue3 react uniapp 小程序",-1),r=[n,_];function l(a,i){return s(),o("div",null,r)}const m=t(c,[["render",l],["__file","index.html.vue"]]);export{m as default};
