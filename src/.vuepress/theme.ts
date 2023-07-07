@@ -74,7 +74,7 @@ export default hopeTheme({
 
   // 插件
   plugins: {
-    git: true,
+    git: false,
     blog: true,
 
     comment: {
