@@ -18,7 +18,9 @@ export default sidebar({
       prefix: "css/",
       collapsible: true,
       children: [
-        'bfc'
+        'bfc',
+        '盒模型',
+        '选择器'
       ],
     },
     {
