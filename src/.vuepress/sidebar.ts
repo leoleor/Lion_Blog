@@ -1,4 +1,5 @@
 import { sidebar } from "vuepress-theme-hope";
+import { getFileName } from './path/index'
 
 export default sidebar({
   '/articles': [
@@ -17,11 +18,7 @@ export default sidebar({
       text: "css",
       prefix: "css/",
       collapsible: true,
-      children: [
-        'bfc',
-        '盒模型',
-        '选择器'
-      ],
+      children: getFileName('./src/accumulation/css')
     },
     {
       text: "html",
