@@ -17,10 +17,11 @@ article: false
 - :first-of-type
 - :last-of-type
 
-## 样式
+## 新样式
 
-`border-radius` 圆角边框  
-`box-shadow` 阴影
+- `border-radius` 圆角边框  
+- `box-shadow` 盒子阴影  
+- `background-image` 背景图
       
 ## 盒模型
 
@@ -41,16 +42,15 @@ article: false
 
 ## transition 过渡
 
-概念
+语法 `transition: property duration timing-function delay;`
 
-transition 简写属性
+简写 `transition: property duration;`
 
 1. transition-property: css属性名
 2. transtion-duration: 过渡花费时间 默认0
 3. transition-timing-function: 过渡的时间曲线 默认'ease' 
 4. transition-delay: 过渡从何时开始 默认0
 
-例子
 ``` css
 div {
   background-color: #000;
@@ -66,17 +66,20 @@ div:hover {
 ```
 
 ## animation 动画
-概念
-  animation 简写属性,animation: name duration timing-function delay iteration-count direction fill-mode;
-  @keyframes 声明关键帧
-  ​1.animation-name：关键帧名字
-  2.animation-duration：播放动画时长 默认0
-  3.animation-timing-function：播放的速度曲线 默认'ease'
-  4.animation-delay：播放何时开始 默认0
-  5.animation-iteration-count：播放次数 默认1 'infinite'循环
-  6.animation-direction：播放方向 默认'normal' 'reverse'反向播放
-  
-例子
+
+语法 `animation: name duration timing-function delay iteration-count direction fill-mode play-state;`
+
+简写 `animation: name duration;`
+
+1. animation-name：关键帧名字，@keyframes 声明关键帧
+2. animation-duration：播放动画时长 默认0
+3. animation-timing-function：播放的速度曲线 默认'ease'
+4. animation-delay：播放何时开始 默认0
+5. animation-iteration-count：播放次数 默认1 'infinite'循环
+6. animation-direction：播放方向 默认'normal' 'reverse'反向播放
+7. animation-fill-mode：当动画完成时，或当动画有一个延迟未开始播放时
+8. animation-play-state：指定动画是否正在运行或已暂停。
+
 ``` css
 div {
   position: absolute;
@@ -111,36 +114,11 @@ div {
 ​}
 ```
 
-## 过渡与动画的区别
+> 过渡与动画的区别
 
 动画不需要事件触发，过渡需要(如hover)  
 过渡只有一组关键帧，动画可以设置多个
-
-## :before和::before
-
-在css3中，单引号用于伪类；双引号用于伪元素  
-:before是css3之前的用法，::before是css3后的用法
-
-## css预处理器，用过什么特点
-
-SASS(SCSS) 、LESS
-语法
-  sass语法不带大括号和分号，并且有严格的缩进
-  ​scss是sass3.0引入的新语法，使用和css一样
-
-特点
-  变量
-    sass以$符 $background-color: blue; 
-    less以@符 @color: blue;
-  混合Mixins，class中的class
-    sass用法：先定义@mixin 样式名，用的时候@include 样式名
-    less用法：直接.class.class
-  传参
-    sass  @mixin 样式名($参数)
-    less .样式名(@参数)
-  嵌套
-    1.在一个选择器中再嵌套其子级选择器，避免重复写父级选择器， 使其结构清晰，增加代码可读性。如果在嵌套里要使用父级选择器，可以用&:hover
-    ​2.属性嵌套：像 font-size, font-family, font-weight 等都是以 font 为属性命名空间， 在 Sass 中允许将属性嵌套在命名空间中。        
+   
 
 
 
