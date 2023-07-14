@@ -8,6 +8,7 @@ contributors: false
 toc: false
 icon: hurricane
 article: false
+index: false
 ---
 
 - css

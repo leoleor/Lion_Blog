@@ -7,34 +7,33 @@ export default sidebar({
       text: '静态网站',
       prefix: "site/",
       collapsible: true,
-      children: [
-        'githubPages',
-        'githubActions'
-      ]
+      children: getFileName('./src/articles/site')
     }
   ],
   '/accumulation': [
     {
-      text: "css",
-      prefix: "css/",
+      text: "CSS",
+      prefix: "CSS/",
       collapsible: true,
-      children: getFileName('./src/accumulation/css')
+      children: getFileName('./src/accumulation/CSS')
     },
     {
-      text: "html",
-      prefix: "html/",
+      text: "HTML",
+      prefix: "HTML/",
       collapsible: true,
-      children: [
-        'html5'
-      ],
+      children: getFileName('./src/accumulation/HTML')
     },
     {
-      text: 'http',
-      prefix: "http/",
+      text: "JavaScript",
+      prefix: "JavaScript/",
       collapsible: true,
-      children: [
-        'httpVersion'
-      ]
+      children: getFileName('./src/accumulation/JavaScript')
+    },
+    {
+      text: 'HTTP',
+      prefix: "HTTP/",
+      collapsible: true,
+      children: getFileName('./src/accumulation/HTTP')
     }
   ]
 });

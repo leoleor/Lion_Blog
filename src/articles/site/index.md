@@ -1,10 +1,10 @@
 ---
-title: '站点部署'
+title: '静态网站部署'
 pageInfo: false
-# breadcrumb: false 
 comment: false
 editLink: false
 toc: false
 icon: edit
 article: false
+index: false
 ---
