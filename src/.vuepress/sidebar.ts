@@ -34,6 +34,12 @@ export default sidebar({
       prefix: "HTTP/",
       collapsible: true,
       children: getFileName('./src/accumulation/HTTP')
+    },
+    {
+      text: '浏览器',
+      prefix: "Browser/",
+      collapsible: true,
+      children: getFileName('./src/accumulation/Browser')
     }
   ]
 });
