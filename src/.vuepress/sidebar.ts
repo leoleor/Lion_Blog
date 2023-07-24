@@ -40,6 +40,12 @@ export default sidebar({
       prefix: "Browser/",
       collapsible: true,
       children: getFileName('./src/accumulation/Browser')
+    },
+    {
+      text: '手写代码',
+      prefix: "HandWrite/",
+      collapsible: true,
+      children: getFileName('./src/accumulation/HandWrite')
     }
   ]
 });
