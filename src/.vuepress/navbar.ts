@@ -3,11 +3,15 @@ import { navbar } from "vuepress-theme-hope";
 export default navbar([
   "/",
   '/articles/',
-  '/accumulation/',
+  {
+    text: "前端积累",
+    icon: "study",
+    children: ["/accumulation/index.md", "/technology/index.md"],
+  },
   '/diary/',
   {
     text: "关于狮子",
-    icon: "user",
+    icon: "people",
     link: "/intro",
   },
 ]);

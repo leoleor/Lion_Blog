@@ -53,5 +53,31 @@ export default sidebar({
       collapsible: true,
       children: getFileName('./src/accumulation/Build')
     }
+  ],
+  '/technology': [
+    {
+      text: 'VUE模块',
+      prefix: "VUE/",
+      collapsible: true,
+      children: getFileName('./src/technology/VUE')
+    },
+    {
+      text: 'REACT模块',
+      prefix: "REACT/",
+      collapsible: true,
+      children: getFileName('./src/technology/REACT')
+    },
+    {
+      text: 'UNIAPP模块',
+      prefix: "UNIAPP/",
+      collapsible: true,
+      children: getFileName('./src/technology/UNIAPP')
+    },
+    {
+      text: '微信小程序',
+      prefix: "MpWeixin/",
+      collapsible: true,
+      children: getFileName('./src/technology/MpWeixin')
+    }
   ]
 });
