@@ -8,7 +8,7 @@ lastUpdated: false
 editLink: false
 contributors: false
 toc: false
-icon: feather-pointed
+icon: leaf
 cover: /assets/images/cover1.jpg
 article: false
 ---
