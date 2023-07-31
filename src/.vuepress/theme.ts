@@ -64,7 +64,7 @@ export default hopeTheme({
   },
 
   // 字体图标资源链接
-  iconAssets: 'fontawesome-with-brands',
+  iconAssets: 'iconfont',
 
   // 打印按鈕
   print: false,
