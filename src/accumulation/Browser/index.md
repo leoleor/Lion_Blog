@@ -1,5 +1,5 @@
 ---
-title: '静态网站部署'
+title: '浏览器相关'
 pageInfo: false
 comment: false
 editLink: false
@@ -9,4 +9,4 @@ article: false
 index: false
 ---
 
-<AutoCatalog base='/articles/site/' />
+<AutoCatalog base='/accumulation/Browser/' />
