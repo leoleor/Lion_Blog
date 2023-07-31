@@ -46,6 +46,12 @@ export default sidebar({
       prefix: "HandWrite/",
       collapsible: true,
       children: getFileName('./src/accumulation/HandWrite')
+    },
+    {
+      text: '构建工具',
+      prefix: "Build/",
+      collapsible: true,
+      children: getFileName('./src/accumulation/Build')
     }
   ]
 });
