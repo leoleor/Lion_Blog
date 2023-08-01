@@ -16,7 +16,3 @@ index: false
 - react
 - uniapp
 - 小程序
-
-### 1
-
-### 2
