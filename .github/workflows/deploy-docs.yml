@@ -64,9 +64,9 @@ jobs:
 
       # 运行构建脚本
       - name: Run Build Script
-        # run: npm run build
+        run: npm run build
         # run: npm ci --no-cache
-        run: node --max-old-space-size=4096 ./node_modules/.bin/vuepress build
+        # run: node --max-old-space-size=4096 ./node_modules/.bin/vuepress build
 
       # 部署到 GitHub Pages
       - name: Deploy to GitHub Pages
