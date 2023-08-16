@@ -71,70 +71,70 @@ jobs:
           FOLDER: src/.vuepress/dist
 
   my_second_job:
-  # 任务的名称
-  name: upload-files-to-server
+    # 任务的名称
+    name: upload-files-to-server
 
-  # 运行所需要的虚拟机环境
-  runs-on: ubuntu-latest
+    # 运行所需要的虚拟机环境
+    runs-on: ubuntu-latest
 
-  # 每个任务下的运行步骤，短横杠 - 表示一个步骤，从上至下依次执行。
-  steps:
-    # clone 该仓库的源码到工作流中
-    - name: Clone Code
-      uses: actions/checkout@v2
-      with:
-        # "最近更新时间"等 git 日志相关信息，需要拉取全部提交记录
-        fetch-depth: 0
+    # 每个任务下的运行步骤，短横杠 - 表示一个步骤，从上至下依次执行。
+    steps:
+      # clone 该仓库的源码到工作流中
+      - name: Clone Code
+        uses: actions/checkout@v2
+        with:
+          # "最近更新时间"等 git 日志相关信息，需要拉取全部提交记录
+          fetch-depth: 0
 
-    # 安装 Node 环境
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        # 选择要使用的 node 版本
-        node-version: '18.x'
+      # 安装 Node 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          # 选择要使用的 node 版本
+          node-version: '18.x'
 
-    - name: Cache NPM dependencies
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-npm-cache-
+      - name: Cache NPM dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
 
-    # 安装依赖
-    - name: Install dependencies
-      # if: steps.npm-cache.outputs.cache-hit != 'true'
-      # run: yarn --frozen-lockfile
-      if: steps.cache-deps.outputs.cache-hit != 'true'
-      run: npm install
+      # 安装依赖
+      - name: Install dependencies
+        # if: steps.npm-cache.outputs.cache-hit != 'true'
+        # run: yarn --frozen-lockfile
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm install
 
-    # 运行构建脚本
-    - name: Run Build Script
-      env:
-        NODE_OPTIONS: --max_old_space_size=4096
-      run: npm run build
+      # 运行构建脚本
+      - name: Run Build Script
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+        run: npm run build
 
-    # https://github.com/easingthemes/ssh-deploy/issues/90
-    # 上传云服务器
-    - name: Upload to Deploy Server
-      uses: easingthemes/ssh-deploy@main
-      env:
-        # 服务器的私钥
-        SSH_PRIVATE_KEY: ${{ secrets.D_PASS }}
-        # 服务器公网ip
-        REMOTE_HOST: ${{ secrets.D_HOST }}
-        # 服务器用户名
-        REMOTE_USER: ${{ secrets.D_USER }}
-        # 先清空目标目录
-        ARGS: '-avzr --delete'
-        # 打包后输出的文件
-        SOURCE: "src/.vuepress/dist"
-        # 上传到服务器路径
-        TARGET: /www/mysite
-        SCRIPT_BEFORE: |
-          whoami
-          ls -al
-        SCRIPT_AFTER: |
-          whoami
-          ls -al
-          echo $RSYNC_STDOUT
+      # https://github.com/easingthemes/ssh-deploy/issues/90
+      # 上传云服务器
+      - name: Upload to Deploy Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          # 服务器的私钥
+          SSH_PRIVATE_KEY: ${{ secrets.D_PASS }}
+          # 服务器公网ip
+          REMOTE_HOST: ${{ secrets.D_HOST }}
+          # 服务器用户名
+          REMOTE_USER: ${{ secrets.D_USER }}
+          # 先清空目标目录
+          ARGS: '-avzr --delete'
+          # 打包后输出的文件
+          SOURCE: "src/.vuepress/dist"
+          # 上传到服务器路径
+          TARGET: /www/mysite
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT
