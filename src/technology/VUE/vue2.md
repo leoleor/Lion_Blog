@@ -434,7 +434,19 @@ vue中修饰符分为以下五种：
 
 - trim
 
+自动过滤用户输入的首空格字符，而中间的空格不会过滤
+
+```js
+<input type="text" v-model.trim="value">
+```
+
 - number
+
+自动将用户的输入值转为数值类型，但如果这个值无法被parseFloat解析，则会返回原来的值
+
+```js
+<input v-model.number="age" type="number">
+```
 
 ## nextTick
 
