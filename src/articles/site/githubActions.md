@@ -87,7 +87,7 @@ jobs:
 
 - **steps** 每个任务下的运行步骤，从上至下依次执行
 
-![微信截图_20230614163454.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/305396d90fa748ec99da5475a875946c~tplv-k3u1fbpfcp-watermark.image?)
+![](/images/githubActions/jobs.png)
 
 - ... [文档传送门](https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobs)
 
@@ -107,7 +107,7 @@ jobs:
 
 **正片开始** 为了感受完整流程，我重新创建了一个 VuePress 的demo
 
-![微信截图_20230615200921.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aba601bd9e654336a1d53a3f57f6662e~tplv-k3u1fbpfcp-watermark.image?)
+![](/images/githubActions/demo.png)
 
 在项目根路径下的 `.github/workflows` 目录中创建一个 deploy.yml/deploy.yaml 文件（deploy可以自定义命名）
 
@@ -216,39 +216,40 @@ jobs:
 
 配置过程如下：
 
-![配置变量1.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9d6f6be9d9b74ce3bc6fcaf17b5e8557~tplv-k3u1fbpfcp-watermark.image?)
+![配置变量1](/images/githubActions/配置变量1.png)
 
-![配置变量2.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7cf28b8b757343afa0aab5bb287376e7~tplv-k3u1fbpfcp-watermark.image?)
+![配置变量2](/images/githubActions/配置变量2.png)
 
 配置完成后：
 
-![配置变量3.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cca1c670b9494b0285bdbb6ec7381bd5~tplv-k3u1fbpfcp-watermark.image?)
+
+![配置变量3](/images/githubActions/配置变量3.png)
 
 ### 开启工作流权限
 
 如果没有开启，执行工作流会报错
 
-![权限报错.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2d1f7ed900fa4deeab7d0e82b7c15416~tplv-k3u1fbpfcp-watermark.image?)
+![权限报错](/images/githubActions/权限报错.png)
 
 配置如下：
 
-![权限1.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/04b8b9f9233947b199c2a981d0560016~tplv-k3u1fbpfcp-watermark.image?)
+![权限1](/images/githubActions/权限1.png)
 
-![权限2.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/09b99747fdac4b8b970c52cd1218f446~tplv-k3u1fbpfcp-watermark.image?)
+![权限2](/images/githubActions/权限2.png)
 
 ## 提交代码
 
 代码提交到仓库后，工作流就开始执行，需要等一会，待 gh-pages 分支创建后，来到如图位置，Source 选择 `Deploy from a branch` ，Branch 选择 `gh-pages` 分支，点击 `save` 保存 
 
-![选择构建.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/697fd739921a45409816078a424cca0f~tplv-k3u1fbpfcp-watermark.image?)
+![选择构建](/images/githubActions/选择构建.png)
 
 然后会看到 `Actions` 栏这里又开始运行一个工作流
 
-![开始构建.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6687c43885ba468f9b3bc30171cd839c~tplv-k3u1fbpfcp-watermark.image?)
+![开始构建](/images/githubActions/开始构建.png)
 
 稍等片刻执行完毕，看到 GitHub Pages 站点启动成功，就可以访问网站了！
 
-![完成.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ac59b8632d1e42c5b00822334b576d70~tplv-k3u1fbpfcp-watermark.image?)
+![完成](/images/githubActions/完成.png)
 
 ## 总结
 
