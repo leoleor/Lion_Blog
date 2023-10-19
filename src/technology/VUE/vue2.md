@@ -50,6 +50,7 @@ vue里就是将以前繁琐的dom操作，通过js去编写成一个通用的vie
 > 加载一个子组件的过程:
 
 > 父beforeCreate->父created->父beforeMount->子beforeCreate->子created->子beforeMount  
+> 子mounted->父mounted  
 > 父beforeUpdate->子beforeUpdate->子updated->父updated  
 > 父beforeDestroy->子beforeDestroy->子destroyed->父destroyed  
 
@@ -197,6 +198,40 @@ inject: ['msg']
 3. watch不支持缓存，监听的数据变化就触发相应操作；computed缓存计算结果，只有依赖的数据变化才会重新计算
 4. watch支持异步；computed不支持异步
 5. 例子: watch: 待补充；computed: 拼接，原价打折计算结果
+
+watch用法
+
+``` js
+// 设置immediate: true，当值第一次绑定的时候，立即执行监听函数/执行handler方法
+// 设置deep: true，当对象的属性较多是，每个属性的变化都会执行handler
+watch: { 
+  pageSize(newVal, oldVal) { // 简单监听
+    console.log(newVal, oldVal) 
+  },
+  person: { // 对对象进行深度监听
+    handler(nv) {
+      console.log(nv)
+    },
+    immediate: true,
+    deep: true
+  },
+  'person.name': { // 对对象的某一个属性进行深度监听
+    handler(nv) {
+      console.log(nv)
+    },
+    immediate: true,
+    deep: true
+  }
+}
+```
+computed用法
+``` js
+computed: {
+  fullName() {
+    return this.surname + '~' + this.name
+  }
+}
+```
 
 ## v-show和v-if
 
