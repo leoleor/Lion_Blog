@@ -41,10 +41,10 @@ article: true
 
 - 静态方法
 
-    - Promise.all 所有成功才执行then
+    - Promise.all 所有成功才执行then，有一个失败后面都会被忽略并执法catch
     - Promise.race 拿到最快的看是then还是catch
-    - Promise.allSettled 一个成功就行，没有catch，结果包含了状态
-    - Promise.any 有成功就行，输出第一个成功的，所有失败就catch ES2021
+    - Promise.allSettled 所有执行完毕，返回包含了每个promise结果的对象数组 [{ status: "fulfilled", value: 3 }, { status: "rejected", reason: "foo" }]
+    - Promise.any 有成功就执行then，输出第一个成功的，所有失败才执行catch ES2021
 
 ## 类 Class
 
