@@ -104,7 +104,7 @@ npm run dev
 
 如果整个流程跑下来，页面出现乱码，`请用记事本方式打开乱码的 markdown 文件，另存为的同时修改文件编码为 UTF-8 即可`。我发现凡是用命令创建的文件都会乱码，手动创建的不会。
 
-![b5eb608343cf82839824f03add53aec.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a8244d8b30694191bd0487dc935f74e5~tplv-k3u1fbpfcp-watermark.image?)
+![](/images/githubPages/乱码问题.jpg)
 
 ## 进阶
 
@@ -112,7 +112,7 @@ npm run dev
 
 为了方便理解该框架，我用普通vue项目做了下对比——
 
-![微信截图\_20230601222750.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6f911d09fc142898cfd52503f2da2c3~tplv-k3u1fbpfcp-watermark.image?)
+![](/images/githubPages/vuepress目录理解.png)
 
 ### 站点配置
 
@@ -188,19 +188,19 @@ export default {
 
 看看效果，可以根据自己的需要搭配着用
 
-<p align="center"><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/74587f7933d94673ab09bc044762502f~tplv-k3u1fbpfcp-watermark.image?" alt="下拉.png"></p>
+<p align="center"><img src="/images/githubPages/下拉-children数组.jpg" alt="下拉.png"></p>
 
 <p align=center>下拉 - children为数组</p>
 
 ***
 
-<p align="center"><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ee8d087a638d4e8abb9d4331a1d57059~tplv-k3u1fbpfcp-watermark.image?" alt="下拉2.png"></p>
+<p align="center"><img src="/images/githubPages/下拉-children对象数组.jpg" alt="下拉2.png"></p>
 
 <p align=center>下拉 - children为对象数组</p>
 
 ***
 
-<p align="center"><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c64410e81dcf4a359b3fb4265a9c5a0e~tplv-k3u1fbpfcp-watermark.image?" alt="下拉嵌套.png"></p>
+<p align="center"><img src="/images/githubPages/下拉嵌套.jpg" alt="下拉嵌套.png"></p>
 
 <p align=center>下拉嵌套</p>
 
@@ -263,7 +263,7 @@ export default {
 
 配置完导航栏和侧边栏后，网站慢慢有那味了\~看看效果图——
 
-![微信截图\_20230602205113.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e05da6b7eb8d4415a5be224001cabdf1~tplv-k3u1fbpfcp-watermark.image?)
+![](/images/githubPages/侧边栏+导航栏.png)
 
 ### 页面配置
 
@@ -297,7 +297,7 @@ footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
 ```
 
-![微信截图\_20230602214153.png](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8138798ac0d24e24ae8a864844732e98~tplv-k3u1fbpfcp-watermark.image?)
+![](/images/githubPages/默认首页.png)
 
 [普通页面](https://v2.vuepress.vuejs.org/zh/reference/frontmatter.html) 普通页面也可以根据需要配置，如页面的标题，如果不设置默认是取文档的第一个h1作为标题
 
@@ -468,7 +468,7 @@ sh deploy.sh
 
 脚本执行成功后，代码就会被上传到指定仓库的gh-pages分支，gh-pages分支里的就是项目构建后的dist文件，你也可以把源码上传到master分支或其他分支作为项目源分支。
 
-![微信截图_20230614104252.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b252327772ec4009a933a35251cf64ab~tplv-k3u1fbpfcp-watermark.image?)
+![](/images/githubPages/GithubPages.png)
 
 ### 注意事项
 

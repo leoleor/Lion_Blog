@@ -37,15 +37,61 @@ jobs:
           # 选择要使用的 node 版本
           node-version: '18.x'
 
-      # - name: Cache dependencies
-      #   uses: actions/cache@v2
-      #   id: yarn-cache
-      #   with:
-      #     path: |
-      #       **/node_modules
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
+      - name: Cache NPM dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache-
+
+      # 安装依赖
+      - name: Install dependencies
+        # if: steps.npm-cache.outputs.cache-hit != 'true'
+        # run: yarn --frozen-lockfile
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: npm install
+
+      # 运行构建脚本
+      - name: Run Build Script
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+        run: npm run build
+        # run: npm ci --no-cache
+        # run: node --max-old-space-size=4096 ./node_modules/.bin/vuepress build
+
+      # 部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        # uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          # 这个 secrets.ACCESS_TOKEN 的 ACCESS_TOKEN 是根据你自己仓库里设置的字段来配置的，不要照搬
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          Branch: gh-pages
+          FOLDER: src/.vuepress/dist
+
+  my_second_job:
+    # 任务的名称
+    name: upload-files-to-server
+
+    # 运行所需要的虚拟机环境
+    runs-on: ubuntu-latest
+
+    # 每个任务下的运行步骤，短横杠 - 表示一个步骤，从上至下依次执行。
+    steps:
+      # clone 该仓库的源码到工作流中
+      - name: Clone Code
+        uses: actions/checkout@v2
+        with:
+          # "最近更新时间"等 git 日志相关信息，需要拉取全部提交记录
+          fetch-depth: 0
+
+      # 安装 Node 环境
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          # 选择要使用的 node 版本
+          node-version: '18.x'
 
       - name: Cache NPM dependencies
         uses: actions/cache@v1
@@ -64,44 +110,31 @@ jobs:
 
       # 运行构建脚本
       - name: Run Build Script
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
         run: npm run build
-        # run: npm ci --no-cache
-        # run: node --max-old-space-size=4096 ./node_modules/.bin/vuepress build
 
-      # 部署到 GitHub Pages
-      - name: Deploy to GitHub Pages
-        # uses: JamesIves/github-pages-deploy-action@releases/v3
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          # 这个 secrets.ACCESS_TOKEN 的 ACCESS_TOKEN 是根据你自己仓库里设置的字段来配置的，不要照搬
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          Branch: gh-pages
-          FOLDER: src/.vuepress/dist
-
-      
-    
-      
-      # 缓存 node_modules
-      # - name: Cache dependencies
-      #   uses: actions/cache@v2
-      #   id: yarn-cache
-      #   with:
-      #     path: |
-      #       **/node_modules
-      #     key: ${{ runner.os }}-yarn-${{ hashFiles('**/package-lock.json') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-yarn-
-
-      # 部署到 GitHub Pages
-      # - name: Deploy to GitHub Pages
-      #   uses: crazy-max/ghaction-github-pages@v2
-      #   with:
-      #     # 将要部署资产的 GitHub 存储库（默认$GITHUB_REPOSITORY）
-      #     repo: leoleor/leo
-      #     # 部署到 gh-pages 分支
-      #     target_branch: gh-pages
-      #     # 打包后的资源路径
-      #     build_dir: docs/.vuepress/dist
-      #   env:
-      #     # 这个 ACCESS_TOKEN 是根据你自己仓库里设置的字段来配置的，不要照搬
-      #     GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      # https://github.com/easingthemes/ssh-deploy/issues/90
+      # 上传云服务器
+      - name: Upload to Deploy Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          # 服务器的私钥
+          SSH_PRIVATE_KEY: ${{ secrets.D_PASS }}
+          # 服务器公网ip
+          REMOTE_HOST: ${{ secrets.D_HOST }}
+          # 服务器用户名
+          REMOTE_USER: ${{ secrets.D_USER }}
+          # 先清空目标目录
+          ARGS: '-avzr --delete'
+          # 打包后输出的文件
+          SOURCE: "src/.vuepress/dist"
+          # 上传到服务器路径
+          TARGET: /www/mysite
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT

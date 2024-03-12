@@ -50,6 +50,7 @@ vue里就是将以前繁琐的dom操作，通过js去编写成一个通用的vie
 > 加载一个子组件的过程:
 
 > 父beforeCreate->父created->父beforeMount->子beforeCreate->子created->子beforeMount  
+> 子mounted->父mounted  
 > 父beforeUpdate->子beforeUpdate->子updated->父updated  
 > 父beforeDestroy->子beforeDestroy->子destroyed->父destroyed  
 
@@ -197,6 +198,40 @@ inject: ['msg']
 3. watch不支持缓存，监听的数据变化就触发相应操作；computed缓存计算结果，只有依赖的数据变化才会重新计算
 4. watch支持异步；computed不支持异步
 5. 例子: watch: 待补充；computed: 拼接，原价打折计算结果
+
+watch用法
+
+``` js
+// 设置immediate: true，当值第一次绑定的时候，立即执行监听函数/执行handler方法
+// 设置deep: true，当对象的属性较多是，每个属性的变化都会执行handler
+watch: { 
+  pageSize(newVal, oldVal) { // 简单监听
+    console.log(newVal, oldVal) 
+  },
+  person: { // 对对象进行深度监听
+    handler(nv) {
+      console.log(nv)
+    },
+    immediate: true,
+    deep: true
+  },
+  'person.name': { // 对对象的某一个属性进行深度监听
+    handler(nv) {
+      console.log(nv)
+    },
+    immediate: true,
+    deep: true
+  }
+}
+```
+computed用法
+``` js
+computed: {
+  fullName() {
+    return this.surname + '~' + this.name
+  }
+}
+```
 
 ## v-show和v-if
 
@@ -411,7 +446,168 @@ directives: {
 
 ## 修饰符
 
-https://blog.csdn.net/Yannnnnm/article/details/112485543
+[参考文章](https://blog.csdn.net/Yannnnnm/article/details/112485543)
+
+`.lazy`、`.trim`、`.number`、`.stop`、`.prevent`、`.self`、`.once`、`.capture`、`.passive`、`.native`、`.left`、`.right`、`.middle`、`.sync`、`.camel`、`.prop`
+
+vue中修饰符分为以下五种：
+
+- 表单修饰符
+- 事件修饰符
+- 鼠标按键修饰符
+- 键值修饰符
+- v-bind修饰符
+
+### 表单修饰符
+
+- lazy
+在我们填完信息，光标离开标签的时候，才会将值赋予给value，也就是在change事件之后再进行信息同步
+
+```js
+<input type="text" v-model.lazy="value">
+<p>{{value}}</p>
+```
+
+- trim
+自动过滤用户输入的首空格字符，而中间的空格不会过滤
+
+```js
+<input type="text" v-model.trim="value">
+```
+
+- number
+自动将用户的输入值转为数值类型，但如果这个值无法被parseFloat解析，则会返回原来的值
+
+```js
+<input type="number" v-model.number="age">
+```
+
+### 事件修饰符
+
+- stop
+阻止了事件冒泡，相当于调用了event.stopPropagation方法
+
+```js
+<div @click="shout(2)">
+  <button @click.stop="shout(1)">ok</button>
+</div>
+//只输出1
+```
+
+- prevent
+阻止了事件的默认行为，相当于调用了event.preventDefault方法
+
+```js
+<form v-on:submit.prevent="onSubmit"></form>
+```
+
+- self
+只当在 event.target 是当前元素自身时触发处理函数
+
+```js
+<div v-on:click.self="doThat">...</div>
+```
+
+::: warning
+使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，而 v-on:click.self.prevent 只会阻止对元素自身的点击
+:::
+
+- once
+绑定了事件以后只能触发一次，第二次就不会触发
+
+```js
+<button @click.once="shout(1)">ok</button>
+```
+
+- capture
+使事件触发从包含这个元素的顶层开始往下触发
+
+```js
+<div @click.capture="shout(1)">
+  obj1
+  <div @click.capture="shout(2)">
+    obj2
+    <div @click="shout(3)">
+      obj3
+      <div @click="shout(4)">
+        obj4
+      </div>
+    </div>
+  </div>
+</div>
+// 输出结构: 1 2 4 3 
+```
+
+- passive
+在移动端，当我们在监听元素滚动事件的时候，会一直触发onscroll事件会让我们的网页变卡，因此我们使用这个修饰符的时候，相当于给onscroll事件整了一个.lazy修饰符
+
+```js
+<!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发 -->
+<!-- 而不会等待 `onScroll` 完成  -->
+<!-- 这其中包含 `event.preventDefault()` 的情况 -->
+<div v-on:scroll.passive="onScroll">...</div>
+```
+
+::: warning
+不要把 .passive 和 .prevent 一起使用,因为 .prevent 将会被忽略，同时浏览器可能会向你展示一个警告。
+passive 会告诉浏览器你不想阻止事件的默认行为
+:::
+
+- native
+让组件变成像html内置标签那样监听根元素的原生事件，否则组件上使用 v-on 只会监听自定义事件
+
+```js
+// 如果只是 v-on:click="doSomething" 则不会触发 doSomething 方法
+<my-component v-on:click.native="doSomething"></my-component>
+```
+
+### 鼠标按钮修饰符
+
+- left 左键点击
+
+- right 右键点击
+
+- middle 中键点击
+
+```js
+<button @click.left="shout(1)">ok</button>
+<button @click.right="shout(1)">ok</button>
+<button @click.middle="shout(1)">ok</button>
+```
+
+### 键盘修饰符
+
+键盘修饰符是用来修饰键盘事件（onkeyup，onkeydown）的，有如下：
+
+keyCode存在很多，但vue为我们提供了别名，分为以下两种：
+
+- 普通键（enter、tab、delete、space、esc、up…）
+
+- 系统修饰键（ctrl、alt、meta、shift…）
+
+```js
+// 只有按键为keyCode的时候才触发
+<input type="text" @keyup.keyCode="shout()">
+```
+
+### v-bind修饰符
+
+- sync（(2.3.0+) 语法糖，相当于给props开启了双向数据绑定）
+
+```js
+// 父组件
+<comp :myMessage.sync="bar"></comp> 
+
+// 子组件
+this.$emit('update:myMessage',params);
+
+// 子组件直接修改父组件传递过来的值会被vue2警告
+// myMessage 需要一致
+```
+
+- prop（作为一个 DOM property 绑定而不是作为 attribute 绑定）。
+
+- camel（(2.1.0+) 将 kebab-case attribute 名转换为 camelCase）
 
 ## nextTick
 
@@ -475,4 +671,117 @@ mapState、mapGetters、mapActions、mapMutations
 - 为什么mutations不能处理异步
 
 Vuex中所有的状态更新的唯一途径都是mutation，异步操作通过 Action 来提交 mutation实现，这样使得我们可以方便地跟踪每一个状态的变化，从而让我们能够实现一些工具（devtools）帮助我们更好地了解我们的应用。
+
+
+## Mixins
+
+> 生命周期先执行，data数据和其他选项卡重名会被覆盖
+
+- mixin 中定义的方法和参数`在各组件中不共享`， 即当前组件对mixins的属性的修改，其他也引用了这个mixins的组件不会受影响;
+
+- mixin 中定义的`生命周期函数会比引用组件的生命周期先执行`，会和组件中定义的methods、created等选项合并调用;
+
+- mixin 对象里的(components、methods、computed、data)这些选项，混入组件时选项会被合并，重名冲突时`优先采用组件中定义的数据`;
+
+- 果同时引入多个mixin对象，`执行顺序和引入顺序一致`;
+
+## 插槽
+
+### 作用
+`插槽`：父组件提供内容，在子组件中展示。  
+`作用域插槽`：子组件提供内容（数据），在父组件中展示。
+
+### 类型
+
+- 匿名插槽
+```js
+// 父组件
+<niming>11</niming>
+
+// 子组件
+<template>
+  <div>
+    <div>我是匿名插槽</div>
+    <div class="slot">
+      <slot />
+    </div>
+  </div>
+</template>
+```
+
+- 具名插槽
+``` js
+// 父组件
+<juming>
+  <template slot="slot1">
+    <div>这是蓝色</div>
+  </template>
+  <template slot="slot2">
+    <div>这是绿色</div>
+  </template>
+</juming>
+
+// 子组件
+<template>
+  <div>
+    <div>我是具名插槽</div>
+    <div style="background-color:blue"><slot name="slot1" /></div>
+    <div style="background-color:green"> <slot name="slot2" /></div>
+  </div>
+</template>
+```
+
+- 作用域插槽
+``` js
+// 父组件1
+<zyy1 :list="list">
+  <template slot-scope="scope">
+    {{ scope.$index }} - {{ scope.itemName.name }}
+  </template>
+</zyy1>
+
+// 子组件1
+<template>
+  <div>
+    <div>我是作用域插槽1</div>
+    <ul>
+      <li v-for="(item,index) in list" :key="index">
+        <slot :itemName="item" :index="index" />
+      </li>
+    </ul>
+  </div>
+</template>
+
+// 父组件2
+<zyy2 :user-info="userInfo">
+  <template slot-scope="scope">
+    {{ scope.info }}
+  </template>
+</zyy2>
+
+// 子组件2
+<template>
+  <div>
+    <div>我是作用域插槽2</div>
+    <slot :info="userInfo" />
+  </div>
+</template>
+```
+
+## 设计模式
+
+- 单例模式：new多次，只有一个实例
+- 工厂模式：传入参数就可以创建实例（虚拟节点的创建）
+- 发布订阅模式：eventBus、双向数据绑定
+- 观察者模式：watch
+- 代理模式：_data属性、proxy、防抖、节流
+- 中介者模式：vuex
+- 策略模式
+- 外观模式
+
+::: warning 观察者 vs 发布订阅
+1. 观察者模式，被观察者和观察者之间可以直接通讯；发布订阅模式，消息发送者不会将消息直接发送给订阅者，而是通过一个事件通道传递（直签公司和外派公司）
+2. 观察者模式需要定义两个类，一个被观察者类（里面需要有添加观察者方法、通知方法）、一个观察者类（定义需要执行的方法）；发布订阅模式只需要定义一个类（里面需要定义发布方法、订阅方法）
+3. 观察者模式没有完全解耦；发布订阅模式实现了发布者和订阅者的解耦
+:::
 
