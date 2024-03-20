@@ -1,5 +1,5 @@
 ---
-title: '知识点'
+title: '基础'
 pageInfo: false
 comment: false
 lastUpdated: false
