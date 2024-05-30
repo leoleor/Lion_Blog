@@ -21,6 +21,18 @@ article: true
 
 - `border-radius` 圆角边框  
 - `box-shadow` 盒子阴影  
+
+  语法: `box-shadow: h-shadow v-shadow blur spread color inset`
+
+  | 属性 | 描述 |
+  |:------|:-------:|
+  | h-shadow | 必需的。水平阴影的位置。允许负值 |
+  | v-shadow | 必需的。垂直阴影的位置。允许负值 |
+  | blur | 可选。模糊距离 |
+  | spread | 可选。阴影的大小 |
+  | color | 可选。阴影的颜色。 |
+  | inset | 可选。从外层的阴影（开始时）改变阴影内侧阴影 |
+
 - `background-image` 背景图
       
 ## 盒模型
