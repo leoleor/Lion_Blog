@@ -2,6 +2,7 @@
 title: 'vue3'
 category:
   - 面试
+  - 知识点
 tag:
   - VUE
 star: false

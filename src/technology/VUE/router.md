@@ -2,6 +2,7 @@
 title: 'vue路由'
 category:
   - 面试
+  - 知识点
 tag:
   - VUE
   - 路由
