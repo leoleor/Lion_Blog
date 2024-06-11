@@ -1,0 +1,1 @@
+import{_ as l}from"./plugin-vue_export-helper-c27b6911.js";import{o as n,c as t,b as e}from"./app-03cb7d69.js";const o={},c=e("ul",null,[e("li",null,"vue2"),e("li",null,"vue3"),e("li",null,"react"),e("li",null,"uniapp"),e("li",null,"小程序")],-1),i=[c];function _(r,s){return n(),t("div",null,i)}const d=l(o,[["render",_],["__file","index.html.vue"]]);export{d as default};
