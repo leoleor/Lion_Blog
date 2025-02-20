@@ -130,7 +130,7 @@ jobs:
           # 打包后输出的文件
           SOURCE: "src/.vuepress/dist"
           # 上传到服务器路径
-          TARGET: /www/mysite
+          TARGET: /www/mysite/blog
           SCRIPT_BEFORE: |
             whoami
             ls -al
