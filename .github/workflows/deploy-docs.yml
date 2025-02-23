@@ -120,11 +120,11 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         env:
           # 服务器的私钥
-          SSH_PRIVATE_KEY: ${{ secrets.D_PASS }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           # 服务器公网ip
-          REMOTE_HOST: ${{ secrets.D_HOST }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           # 服务器用户名
-          REMOTE_USER: ${{ secrets.D_USER }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
           # 先清空目标目录
           ARGS: '-avzr --delete'
           # 打包后输出的文件
