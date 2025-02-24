@@ -6,7 +6,7 @@ export default navbar([
   {
     text: "前端积累",
     icon: "study",
-    children: ["/accumulation/index.md", "/technology/index.md"],
+    children: ["/accumulation/index.md", "/technology/index.md", "/vue3/index.md"],
   },
   '/diary/',
   {
