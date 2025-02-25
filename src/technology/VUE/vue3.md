@@ -25,6 +25,12 @@ article: true
 - vue2: Object.defineProperty()
 - vue3: Proxy
 
+::: tip Object.defineProperty()与Proxy的区别
+- Object.defineProperty()劫持各个属性的setter和getter；不能监听数组的变化、不能监听新增/删除的属性；初始化的时候需要 `深层遍历` 每个对象的属性，花费更多时间
+- 通过Proxy劫持属性；能够拦截数组的变化；监听整个对象，不需要进行遍历属性，优化性能
+:::
+
+
 ### 定义响应式数据
 
 - vue2：定义在data函数返回的对象里
