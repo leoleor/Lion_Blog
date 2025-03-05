@@ -12,17 +12,27 @@ article: true
 ## 与vue相比
 
 - 相同点
-  1. 虚拟DOM
+  1. 都使用虚拟DOM提高性能
+  2. 专注自身核心库，将其他功能如路由和全局状态管理交给其他库
+  3. 都提倡组件化，提高复用性
+  4. 都有自己的构建工具，能让你得到一个根据最佳实践设置的项目模板
+  5. 都有props的概念，允许组件间的数据传递
 
 - 不同的
-  1. `语法` vue-原生语法、react-JSX语法
+  1. `语法` vue-SFC模板系统，接近html写法、react-JSX语法
   2. `数据绑定` vue-v-model双向绑定、react-setState单向流动
-  3. `props` vue-props直接写、react-需要引入prop-types
-  4. `DOM更新策略` react自顶向下重新渲染render树
-  5. `条件渲染` vue-v-if、react-借助三元运算符，逻辑性更强
-  6. `兄弟组件通信` vue-eventBus-on/emit、react-subscribe/publish
-  7. `路由信息` vue-组件里获取this.$route、react-路由组件里获取this.props.history/location/match，一般组件没有
-  8. `css作用域` vue-scoped、react-module(仅选择器，原生标签不行)
+  3. `监听数据变化的原理`
+    - vue 通过 getter/setter 以及一些函数的劫持，能精确知道数据变化
+    - vue 计算 Virtual DOM 的差异是以组件为颗粒度的，会跟踪每一个组件的依赖关系，不需要重新渲染整个组件树。
+    - react 默认是通过比较引用的方式（diff）进行的，如果不优化可能导致大量不必要的 VDOM 的重新渲染。
+    可以用 `shouldComponentUpdate/PureComponent/React.memo()` 进行优化
+  4. `条件渲染` vue-v-if、react-借助三元运算符，逻辑性更强
+  5. `组件通信`
+    - vue 子组件向父组件发送消息有两种方式：事件(emit)和回调函数(定义在props)
+    - vue 通过 provide/inject 来实现跨层级的通信
+    - react 子组件向父组件发送消息，都是使用回调函数的
+    - react 可以通过 context 进行跨层级的通信
+  6. `css模块作用域` vue-scoped、react-module(xxx.module.css)
 
 ## 特点
 
