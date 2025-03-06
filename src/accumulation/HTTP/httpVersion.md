@@ -1,12 +1,11 @@
 ---
 title: 'HTTP发展史'
-date: 2023-06-19 08:33:00
 category:
   - 面试
 tag:
   - 计算机网络
   - http
-star: true
+star: false
 sticky: false  
 article: true
 ---

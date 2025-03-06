@@ -1,6 +1,6 @@
 ---
 title: '小白都能看懂的 VuePress + Github Actions'
-date: 2023-06-19 08:33:00
+date: 2025-02-19 08:33:00
 category:
   - 教程
 tag:

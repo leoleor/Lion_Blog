@@ -1,6 +1,6 @@
 ---
 title: '一份超详细VuePress + Github Pages教程'
-date: 2023-06-06 09:39:00
+date: 2025-02-06 09:39:00
 category:
   - 教程
 tag:
