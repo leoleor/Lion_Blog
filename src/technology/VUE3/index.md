@@ -1,5 +1,5 @@
 ---
-title: 'REACT篇'
+title: 'vue3篇'
 pageInfo: false
 comment: false
 editLink: false
@@ -9,4 +9,4 @@ article: false
 index: false
 ---
 
-<AutoCatalog base='/technology/REACT/' />
+<AutoCatalog base='/technology/VUE3/' />

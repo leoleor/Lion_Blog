@@ -1,10 +1,10 @@
 ---
-title: '构建工具'
+title: '构建工具篇'
 pageInfo: false
 comment: false
 editLink: false
 toc: false
-icon: edit
+icon: stack
 article: false
 index: false
 ---

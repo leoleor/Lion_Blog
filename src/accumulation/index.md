@@ -11,10 +11,4 @@ article: false
 index: false
 ---
 
-- CSS
-- HTML
-- JavaScript
-- HTTP
-- 浏览器
-- 手写代码
-- 构建工具
+<AutoCatalog base='/accumulation/' />

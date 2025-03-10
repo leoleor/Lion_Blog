@@ -1,14 +1,14 @@
 ---
-title: '框架'
+title: 'JavaScript篇'
 pageInfo: false
 comment: false
 lastUpdated: false
 editLink: false
 contributors: false
 toc: false
-icon: creative
+icon: stack
 article: false
 index: false
 ---
 
-<AutoCatalog base='/technology/' />
+<AutoCatalog base='/accumulation/JavaScript/' />

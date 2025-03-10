@@ -1,10 +1,10 @@
 ---
-title: '微信小程序'
+title: '微信小程序篇'
 pageInfo: false
 comment: false
 editLink: false
 toc: false
-icon: edit
+icon: stack
 article: false
 index: false
 ---

@@ -1,10 +1,10 @@
 ---
-title: 'UNIAPP模块'
+title: 'UNIAPP篇'
 pageInfo: false
 comment: false
 editLink: false
 toc: false
-icon: edit
+icon: stack
 article: false
 index: false
 ---

@@ -1,10 +1,10 @@
 ---
-title: '浏览器相关'
+title: '浏览器相关篇'
 pageInfo: false
 comment: false
 editLink: false
 toc: false
-icon: edit
+icon: stack
 article: false
 index: false
 ---

@@ -1,10 +1,10 @@
 ---
-title: '手写代码'
+title: '手写代码篇'
 pageInfo: false
 comment: false
 editLink: false
 toc: false
-icon: edit
+icon: stack
 article: false
 index: false
 ---
