@@ -17,20 +17,32 @@ article: true
 
 ## 前端路由
 
-hash模式就是通过监听浏览器的hash值(锚点)来实现前端渲染；  
-history模式是通过操作浏览器的历史记录并监听这个动作来实现前端渲染。浏览器每访问一个地址，都会在浏览器栈里存入路径记录。
+::: tip 你对前端路由/vue-router的理解？ 前端路由/vue-router的实现原理？
+前端路由是基于hash模式和history模式实现的。  
+hash模式是通过监听浏览器的hashchange事件，当浏览器hash值（锚点#）部分发生变化，做出相应渲染。  
+优点：1.兼容性好，大部分浏览器都支持；2.不需要后端配合  
+缺点：1.外观上带#号；2.影响seo搜索  
+history模式是使用html5推出的historyAPI，使用popstate来监听变化，pushState和replaceState来实现渲染。  
+优点：1.有更符合浏览器链接的外观；2.利于seo搜索  
+缺点：1.兼容性较差；2.需要后端配合，非则可能出现404错误
+:::
+
+`hash 模式`是通过监听浏览器的hash值(锚点)来实现前端渲染；  
+`history 模式`是通过操作浏览器的历史记录并监听这个动作来实现前端渲染。浏览器每访问一个地址，都会在浏览器栈里存入路径记录。
 
 ### 模式
+
 - hash模式：location.hash+hashchange
 
 location.hash始终指向页面url中#之后的内容，用来修改浏览器的地址；  
 hashchange来监听变化做出相应渲染
-         ​
+
 - history模式：html5推出的historyAPI
 
 window.history.go、window.history.forward、window.history.back、window.history.pushState、window.history.replaceState，主要通过pushState和replaceState实现；popstate来监听变化
 
 ### 区别
+
 - 外观
 
 hash带#
@@ -49,20 +61,35 @@ hash模式，其原理就是监听（浏览器暴露的hashchange方法）url中
 history的原理就是利用html5推出的history身上的API
          
 
-## $router
+## $router 和 $route
 
 ### 概念
 
-指的是router实例  
-router是路由实例对象，包含一些路由跳转方法，比如push。
+- router 指的是router实例，router是路由实例对象，包含一些路由跳转方法，比如this.$router.push()。
+- route 是当前激活的路由信息对象，是只读属性，不可更改，但是可以watch，$route(to,from)，route是路由信息对象，包含和路由相关的一些信息，比如params,location等。
 
 ### 属性
+
+#### $router
 
 - `$router.app`：配置了router的Vue根实例
 - ​`$router.mode`：路由模式，这里是hash
 - `$router.currentRoute`：当前路由的路由信息对象，包含了当前匹配路由的信息
 
+#### $route
+
+- `$route.fullPath`：完成解析后的url，包含查询参数和hash的完整路径
+- `$route.path`：路径，字符串类型，解析为绝对路径
+- `$route.hash`：当前路由的hash值（带#号的），如果没有hash值则为空字符串
+- `$router.name`：当前路由的名称，如果有的话（用于命名路由）
+- `$route.params`：一个键值对对象，路由参数
+- `$route.query`：一个键值对对象，表示url查询参数
+- `$route.matched`：一个包含了当前路由的所有嵌套路径片段的路由记录（routes配置数组中的对象副本）
+- `$route.redirectedFrom`：重定向来源的路由的名字，如果存在重定向的话
+
 ### 方法
+
+#### $router
 
 - `router.addRoutes(routes)`：动态添加路由规则，参数为符合routes选项要求的数组
 - `router.beforeEach((to,from,next) => {})`：全局前置守卫
@@ -78,25 +105,6 @@ router是路由实例对象，包含一些路由跳转方法，比如push。
 - `router.replace(location)`：和router.push()类似，但是它会替换掉当前的history记录，不会添加新的记录
 - `router.back()`：相当于router.go(-1)
 - ​`router.forward()`：相当于router.go(1)
-
-
-## $route
-
-### 概念
-
-是当前激活的路由信息对象，是只读属性，不可更改，但是可以watch，$route(to,from)  
-route是路由信息对象，包含和路由相关的一些信息，比如params,location等。
-    
-### 属性
-
-- `$route.fullPath`：完成解析后的url，包含查询参数和hash的完整路径
-- `$route.path`：路径，字符串类型，解析为绝对路径
-- `$route.hash`：当前路由的hash值（带#号的），如果没有hash值则为空字符串
-- `$router.name`：当前路由的名称，如果有的话（用于命名路由）
-- `$route.params`：一个键值对对象，路由参数
-- `$route.query`：一个键值对对象，表示url查询参数
-- `$route.matched`：一个包含了当前路由的所有嵌套路径片段的路由记录（routes配置数组中的对象副本）
-- `$route.redirectedFrom`：重定向来源的路由的名字，如果存在重定向的话
 
 ## 路由钩子
 

@@ -21,30 +21,13 @@ article: true
 
 ## 函数参数默认值
 
-## 对象结构
+## 对象解构
 
 ## 扩展运算符 ...
 
 ## 对象属性简写
 
 ## Promise
-
-- 概念
-
-    Promise 本身是同步的立即执行函数， 当在 executor 中执行 resolve 或者 reject的时候, 此时是异步操作，会先执行then/catch等，当主栈完成后， 才会去调用 resolve/reject 中存放的方法执行。
-
-- async/await
-
-    async 函数返回一个 Promise 对象，当函数执行的时候，一旦遇到 await 就会先返回，等到触发的异步操作完成，再执行函数体内后面的语句。可以理解为，是让出了线程，跳出了 async 函数体。 
-
-    Async/Await 就是一个自执行的 generate 函数。利用 generate 函数的特性把异步的代码写成“同步”的形式,第一个请求的返回值作为后面一个请求的参数,其中每一个参数都是一个 promise 对象.
-
-- 静态方法
-
-    - Promise.all 所有成功才执行then，有一个失败后面都会被忽略并执法catch
-    - Promise.race 拿到最快的看是then还是catch
-    - Promise.allSettled 所有执行完毕，返回包含了每个promise结果的对象数组 [{ status: "fulfilled", value: 3 }, { status: "rejected", reason: "foo" }]
-    - Promise.any 有成功就执行then，输出第一个成功的，所有失败才执行catch ES2021
 
 ## 类 Class
 
