@@ -19,21 +19,7 @@ article: true
 
 ## 模板字符串 ${}
 
-## 函数参数默认值
-
-## 对象解构
-
 ## 扩展运算符 ...
-
-## 对象属性简写
-
-## Promise
-
-## 类 Class
-
-## 模块化 module
-
-## for value of arr / for key in arr(es5)
 
 ## 可选链操作符 ?.
 
@@ -46,3 +32,23 @@ article: true
 
     `if (res && res.data && res.data.success)` ​等同于 `if (res?.data?.success)`
 
+## 对象属性简写
+
+## 对象解构
+
+## 函数参数默认值
+
+## 类 Class
+
+## 模块化 module
+
+## Promise
+
+[异步编程](/accumulation/JavaScript/异步编程.md)
+
+## for value of arr / for key in arr(es5)
+
+- 区别
+
+  - for..of..遍历可迭代对象，不可以直接遍历普通对象；for..in..可以遍历对象的属性名，返回对象的键值（key），也可以遍历数组，返回索引（index）
+  - for..of..不涉及原型链属性的遍历；for..in..会遍历原型链上的可枚举属性
