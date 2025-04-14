@@ -1,5 +1,5 @@
 ---
-title: 'vue3'
+title: 'vue2与vue3的区别'
 category:
   - 面试
   - 知识点
@@ -25,9 +25,9 @@ article: true
 - vue2: Object.defineProperty()
 - vue3: Proxy
 
-::: tip Object.defineProperty()与Proxy的区别
-- Object.defineProperty()劫持各个属性的setter和getter；不能监听数组的变化、不能监听新增/删除的属性；初始化的时候需要 `深层遍历` 每个对象的属性，花费更多时间
-- 通过Proxy劫持属性；能够拦截数组的变化；监听整个对象，不需要进行遍历属性，优化性能
+::: tip vue2和vue3响应式的区别
+- 原理: vue2使用Object.defineProperty()来实现响应式。它可以劫持对象属性的getter和setter，但是无法检测对象属性的新增或删除，也不能监听数组长度的变化和数组方法的调用。可以使用vue.set或者vue.delete去监听对象属性的添加或者删除，对于数组的话，vue重写了7个数组方法（push、pop、shift、unshift、splice、sort、reverse）来实现对数组的响应式出力；vue3使用ES6的Proxy对象来实现响应式。Proxy能拦截对象的各种操作，包括属性的访问、赋值、删除等，对数组的所有操作也都能触发响应式更新。
+- 性能: 在处理大型对象的时候，Object.defineProperty()由于需要递归遍历对象的所有属性，在性能上会有些问题；Proxy是对整个对象进行代理，不需要递归遍历，所以性能更好。
 :::
 
 
@@ -249,88 +249,3 @@ pageStyle.value = `height: calc(${ statusBarHeight * 2 }rpx + 378rpx - 60rpx)`
 const calcValue = statusBarHeight * 2 + 378 - 60
 pageStyle.value = `height: ${calcValue}rpx`
 ```
-
-## ref、reactive、toRef 和 toRefs
-
-1. ref 
-
-- ref是一个函数，用于创建一个包含响应式数据的引用对象。
-- ref函数可以接收原始数据类型与引用数据类型。
-- ref 函数创建的响应式数据，在模板中可以直接被使用，在JS 中需要通过.value 的形式才能使用。
-
-```js
-import { ref } from 'vue';
-
-const count = ref(0);
-console.log(count.value); // 输出: 0
- 
-count.value++;
-console.log(count.value); // 输出: 1
-```
-
-2. reactive
-
-- reactive也是一个函数，用于创建一个响应式的对象。
-- reactive函数只能接收引用数据类型。
-
-```js 
-import { reactive } from 'vue';
-
-const state = reactive({
-  count: 0,
-  message: 'Hello, Vue!'
-});
-console.log(state.count); // 输出: 0
- 
-state.count++;
-console.log(state.count); // 输出: 1
-```
-
-3. toRef
-
-- toRef函数用于将一个reactive对象的某个属性转换为一个ref对象。
-- 它接受两个参数：一个是reactive对象，另一个是要转换的属性名。
-- 转换后的ref对象与原始reactive对象的属性保持双向绑定关系。
-
-```js
-import { reactive, toRef } from 'vue';
- 
-const state = reactive({
-  count: 0
-});
-const countRef = toRef(state, 'count');
-console.log(countRef.value); // 输出: 0
- 
-countRef.value++;
-console.log(state.count); // 输出: 1
-console.log(countRef.value); // 输出: 1
-```
-
-4. toRefs
-
-- toRefs函数是toRef的扩展，它用于将一个reactive对象的所有属性转换为一组ref对象。
-- 它接受一个reactive对象作为参数，并返回一个包含所有属性ref对象的普通对象。
-
-```js
-import { reactive, toRefs } from 'vue';
- 
-const state = reactive({
-  count: 0,
-  message: 'Hello, Vue!'
-});
-const stateRefs = toRefs(state);
-console.log(stateRefs.count.value); // 输出: 0
- 
-stateRefs.count.value++;
-console.log(state.count); // 输出: 1
-console.log(stateRefs.count.value); // 输出: 1
-```
-
-### ref和reactive的区别
-
-::: tip 概念/使用方式/使用场景
-- 他们都是用来创建响应式数据的函数，接收参数，并返回一个经过响应式处理的代理对象。
-- ref可以接收基本数据类型和引用类型；reactive只能接收引用类型。
-- ref创建出来的数据在template中可以直接使用，在js中需要使用.value；reactive创建出来的数据在template和js中都可以直接使用。
-- ref一般用于基本数据类型；reactive一般用于处理比较复杂的对象类型。
-:::
