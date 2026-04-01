@@ -2,7 +2,14 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
   "/",
-  '/articles/',
+  // '/articles/',
+  {
+    text: '博客文章',
+    icon: 'edit',
+    children: [
+      "/articles/site/index.md",
+    ]
+  },
   {
     text: "前端积累",
     icon: "study",

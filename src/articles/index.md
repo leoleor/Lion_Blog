@@ -11,8 +11,4 @@ article: false
 index: false
 ---
 
-## 推荐
-
-- [一份超详细VuePress + Github Pages教程](site/githubPages.md)
-
-- [小白都能看懂的 VuePress + Github Actions](site/githubActions.md)
+<AutoCatalog base='/articles/' />

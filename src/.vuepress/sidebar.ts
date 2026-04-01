@@ -2,14 +2,15 @@ import { sidebar } from "vuepress-theme-hope";
 import { getFileName } from './path/index'
 
 export default sidebar({
-  '/articles': [
-    {
-      text: '静态网站',
-      prefix: "site/",
-      collapsible: true,
-      children: getFileName('./src/articles/site')
-    }
-  ],
+  // '/articles': [
+  //   {
+  //     text: '静态网站',
+  //     prefix: "site/",
+  //     collapsible: true,
+  //     children: getFileName('./src/articles/site')
+  //   }
+  // ],
+  '/articles/site/': getFileName('./src/articles/site'),
   '/accumulation/CSS/': getFileName('./src/accumulation/CSS'),
   '/accumulation/HTML/': getFileName('./src/accumulation/HTML'),
   '/accumulation/JavaScript/': getFileName('./src/accumulation/JavaScript'),

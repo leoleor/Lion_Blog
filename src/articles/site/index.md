@@ -2,7 +2,9 @@
 title: '静态网站部署'
 pageInfo: false
 comment: false
+lastUpdated: false
 editLink: false
+contributors: false
 toc: false
 icon: edit
 article: false

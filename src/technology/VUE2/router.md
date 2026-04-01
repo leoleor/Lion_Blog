@@ -1,5 +1,5 @@
 ---
-title: 'vue路由'
+title: '前端路由'
 category:
   - 面试
   - 知识点

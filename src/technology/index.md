@@ -1,5 +1,5 @@
 ---
-title: '框架'
+title: '前端积累'
 pageInfo: false
 comment: false
 lastUpdated: false
