@@ -10,6 +10,7 @@ export default sidebar({
   //     children: getFileName('./src/articles/site')
   //   }
   // ],
+  '/ai/': getFileName('./src/ai'),
   '/articles/site/': getFileName('./src/articles/site'),
   '/accumulation/CSS/': getFileName('./src/accumulation/CSS'),
   '/accumulation/HTML/': getFileName('./src/accumulation/HTML'),

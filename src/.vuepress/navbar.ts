@@ -2,7 +2,7 @@ import { navbar } from "vuepress-theme-hope";
 
 export default navbar([
   "/",
-  // '/articles/',
+  '/ai/',
   {
     text: '博客文章',
     icon: 'edit',
